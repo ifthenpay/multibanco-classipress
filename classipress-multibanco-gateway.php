@@ -12,22 +12,7 @@
 			) );
             
             add_action('parse_request', array($this,'multibanco_callback'));
-            //add_action('wp_ajax_validate_payment', array($this,'multibanco_callback'));
 		}
-        
-        
-
-function my_action_callback() {
-	global $wpdb; // this is how you get access to the database
-
-	$whatever = intval( $_POST['whatever'] );
-
-	$whatever += 10;
-
-        echo $whatever;
-
-	wp_die(); // this is required to terminate immediately and return a proper response
-}
         
 		public function create_form( $order, $options ){ }
 
@@ -59,7 +44,7 @@ function my_action_callback() {
                     'desc' => get_site_url()."/MultibancoPaymentValidation?chave=[CHAVE_ANTI_PHISHING]&entidade=[ENTIDADE]&referencia=[REFERENCIA]&val=[VALOR]<br/><br/>Deverá comunicar este endereço à IfthenPay juntamente com a Chave Anti-phishing que foi gerada."
                 )
 			);
-            //http://vagrant.dev/classipress
+            
 			$arr = array(
                 array(
                         'title' => "Configurações Multibanco (Gateway IfthenPay)",
@@ -71,11 +56,6 @@ function my_action_callback() {
         }
     
         public function process( $order, $options ){
-            
-            //var_dump($order);
-            //var_dump($order->get_id());
-            
-            //var_dump(GenerateMbRef($options["mbentidade"],$options["mbsubentidade"],,));
             
             $ent_id = $options["mbentidade"];
             $subent_id = $options["mbsubentidade"];
